@@ -7,10 +7,20 @@
     <body>
         <div class="fcontainer">
             <h1>Here is a Random Canvas</h1>
-            <h5>I'm probably gonna make some random game here or something down the line</h5>
-            <h5>I've wanted to learn canvas for a while but never really had the time</h5>
-            <h5>Although canvas is a pretty new feature to the web, it gives me a flash-esque feel so I think it has its place here</h5>
-            <canvas width="600px" height="600px" id="canvas"></canvas>
+            <h2>Draw on the canvas by filling out the fields</h2>
+            <div class="frow">
+                
+                <form class="drawform" action="" onsubmit="draw(); return false">
+                    <input type="text" name="x" id="x" placeholder="x"><br>
+                    <input type="text" name="y" id="y" placeholder="y"><br>
+                    <input type="text" name="width" id="width" placeholder="width"><br>
+                    <input type="text" name="height" id="height" placeholder="height"><br>
+                    <input type="text" name="color" id="color" placeholder="color"><br>
+                    <input type="submit" value="Draw">
+                </form>
+
+                <canvas width="512px" height="512px" id="canvas"></canvas>
+            </div>
         </div>
 
         <script src="script.js"></script>

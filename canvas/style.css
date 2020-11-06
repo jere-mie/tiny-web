@@ -13,3 +13,17 @@ body{
 #canvas{
     background-color: white;
 }
+
+.frow{
+    display: flex;
+    flex-direction: row;
+}
+
+.drawform{
+    margin-right: 45px; 
+}
+
+.drawform input{
+    padding: 8px;
+    margin: 5px;
+}
