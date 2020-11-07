@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Election Predictor</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="fcontainer">
+            <h1>Election Predictor</h1>
+            <h2>Use this tool to predict the likelihood of someone winning an election, or who the winner will be between two people</h2>
+            <br><br>
+            <h1>Likelihood of One Person Winning an Election</h1>
+            <div class="frow">
+                <form action="" onsubmit="predict(); return false;">
+                    <input type="text" name="name" id="name" placeholder="name">
+                    <input type="submit" value="Predict">
+                </form>
+            </div>
+            <br><br>
+            <h1>Predict the Winner of an Election Given 2 Choices</h1>
+            <div class="frow">
+                <form action="" onsubmit="predict2(); return false;">
+                    <input type="text" name="name1" id="name1" placeholder="name 1">
+                    <input type="text" name="name2" id="name2" placeholder="name 2">
+                    <input type="submit" value="Predict">
+                </form>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>    
+</html>
