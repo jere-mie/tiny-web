@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Secret Santa Name Scrambler</title>
+        <link rel="stylesheet" href="https://css.bornais.ca/css/bornais.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="center">
+            <h1 class="thin">Secret Santa Name Scrambler</h1>
+            <h3>Input names one to a line and press the 'create' button</h3>    
+        </div>
+        <form onsubmit="generate(); return false;">
+            <div class="bgrid bgrid-md-2">
+                <div class="w-md-1 center">
+                    <h3>Names</h3>
+                    <textarea name="names_input" id="names_input" cols="50" rows="10" required></textarea>
+                </div>
+
+                <div class="w-md-1 center">
+                    <h3>New Names (Scrambled)</h3>
+                    <textarea name="names_output" id="names_output" cols="50" rows="10" readonly></textarea>
+                </div>
+            </div>
+            <div class="center">
+                <input type="submit" value="Generate" class="bbtn bbtn-outline-azure">
+            </div>
+        </form>
+        <script src="script.js"></script>      
+    </body>
+</html>
