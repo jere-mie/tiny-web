@@ -1,0 +1,41 @@
+h1{
+    font-size: 4.5rem;
+    margin-top: 10vh;
+    margin-bottom: 0;
+}
+
+#timeform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#timeform h2{
+    font-size: 2rem;;
+}
+
+#timeform input[type="text"]{
+    padding: 8px 12px;
+    width: 50%;
+    margin-bottom: 2vh;
+    font-size: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#output{
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#output p{
+    background-color: beige;
+    padding: 6px 15px;
+    width: 300px;
+    margin: 0;
+    border: 1px solid rgb(251, 251, 241);
+}
