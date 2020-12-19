@@ -12,7 +12,11 @@
         <h1 class="thin center">Study Timetable Generator</h1>
         <form action="" onsubmit="run(); return false" id="timeform">
             <h2 class="thin">Starting Time (AM/PM Doesn't Matter)</h2>
-            <input type="text" id="time-in">
+            <input type="text" id="time-in" placeholder="9:00">
+            <h2 class="thin center">Time Studying (In Minutes)</h2>
+            <input type="text" id="on-time" value="30">
+            <h2 class="thin center">Time on Break (In Minutes)</h2>
+            <input type="text" id="off-time" value="20">
             <input type="submit" value="Generate" class="bbtn bbtn-cloud">
         </form>
         <div id="output">

@@ -1,20 +1,17 @@
 function run(){
     let input = document.getElementById('time-in');
     let output = document.getElementById('output');
-
+    let timeon = document.getElementById('on-time');
+    let timeoff = document.getElementById('off-time');
     let times = input.value.split(':')
     times[0] = parseInt(times[0]);
     times[1] = parseInt(times[1]);
     let ttime = times[1];
     let text = "ON";
     let increment = 30;
-
+    output.innerHTML = "";
     let p = document.createElement("p");
-    if(times[1]==0){
-        ttime = "00";
-    }else{
-        ttime = times[1]
-    }
+    ttime = times[1].toString().padStart(2, "0");
     p.innerText = `${times[0]}:${ttime} ${text}`;
     output.appendChild(p);
 
@@ -22,24 +19,20 @@ function run(){
         p = document.createElement("p");
         if(i%2==0){
             text = "OFF"
-            increment = 30;
+            increment = parseInt(timeon.value);
         }else{
             text = "ON"
-            increment = 20;
+            increment = parseInt(timeoff.value);
         }
         times[1]+=increment;
-        if(times[1]>=60){
+        while(times[1]>=60){
             times[1]-=60;
             times[0]++;
         }
-        if(times[0]>12){
+        while(times[0]>12){
             times[0]-=12;
         }
-        if(times[1]==0){
-            ttime = "00";
-        }else{
-            ttime = times[1]
-        }
+        ttime = times[1].toString().padStart(2, "0");
         p.innerText = `${times[0]}:${ttime} ${text}`;
         output.appendChild(p);
     }
