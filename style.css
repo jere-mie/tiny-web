@@ -9,3 +9,16 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+p{
+    font-size: 1.2rem;
+}
+
+.navlist li{
+    font-size: 1.3rem;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+}
