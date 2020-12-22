@@ -70,6 +70,9 @@ function delLine(index){
     document.querySelector("#unren"+index).remove();
     document.querySelector("#del"+index).remove();
     document.querySelector("#ed"+index).remove();
+    document.querySelector("#editForm").classList.add("hidden");
+    document.querySelector("#newForm").classList.remove("hidden");
+    
 }
 
 function getDragAfterElement(container, y){
