@@ -12,8 +12,13 @@
 <body>
     <div class="container">
         <h1>Equation Renderer/Proof Maker</h1>    
-        <form action="" onsubmit="run(); return false">
+        <form action="" onsubmit="run(); return false" id="newForm">
             <input type="text" id="eqn">
+            <input type="submit" value="Submit" class="bbtn bbtn-azure">
+        </form>
+        <form action="" onsubmit="edit(); return false" id="editForm" class="hidden">
+            <input type="text" id="editEqn">
+            <input type="hidden" name="lineId" id="lineId">
             <input type="submit" value="Submit" class="bbtn bbtn-azure">
         </form>
         <div id="result"></div>

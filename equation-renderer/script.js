@@ -20,6 +20,7 @@ function run(){
     let item = document.createElement("div");
     let rendered = document.createElement("div");
     let del = document.createElement("button");
+    let ed = document.createElement("button");
     if(eqn.value==""){
         return;
     }
@@ -29,7 +30,11 @@ function run(){
     del.setAttribute("onclick", `delLine(${i})`);
     del.setAttribute("id", `del${i}`);
     del.innerText = "X";
-
+    ed.setAttribute("class", "bbtn bbtn-amber");
+    ed.setAttribute("onclick", `callEdit(${i})`);
+    ed.setAttribute("id", `ed${i}`);
+    ed.innerText = "E";
+    
     katex.render(eqn.value, rendered, {
         throwOnError: false
     });
@@ -45,6 +50,7 @@ function run(){
     })
 
     item.appendChild(del);
+    item.appendChild(ed);
     item.appendChild(rendered);
     result.appendChild(item);
     eqn.value = "";
@@ -53,6 +59,7 @@ function run(){
 function delLine(index){
     document.querySelector("#ren"+index).remove();
     document.querySelector("#del"+index).remove();
+    document.querySelector("#ed"+index).remove();
 }
 
 function getDragAfterElement(container, y){
@@ -67,4 +74,27 @@ function getDragAfterElement(container, y){
             return closest;
         }
     }, {offset: Number.NEGATIVE_INFINITY}).element;
+}
+
+function callEdit(index){
+    let newForm = document.getElementById('newForm');
+    let editForm = document.getElementById('editForm');
+    let lineId = document.getElementById('lineId');
+    newForm.classList.add("hidden");
+    editForm.classList.remove("hidden");
+    lineId.value = index;
+}
+
+function edit(){
+    let editEqn = document.getElementById('editEqn');
+    let newForm = document.getElementById('newForm');
+    let editForm = document.getElementById('editForm');
+    let lineId = document.getElementById('lineId').value;
+    let line = document.getElementById('ren'+lineId);
+    katex.render(editEqn.value, line, {
+        throwOnError: false
+    });
+    editEqn.value = "";
+    newForm.classList.remove("hidden");
+    editForm.classList.add("hidden");
 }
