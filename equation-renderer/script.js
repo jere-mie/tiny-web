@@ -17,14 +17,23 @@ var i = 0;
 function run(){
     let eqn = document.querySelector("#eqn"); 
     let result = document.querySelector("#result");
+
     let item = document.createElement("div");
+    let unrendered = document.createElement("p");
     let rendered = document.createElement("div");
     let del = document.createElement("button");
     let ed = document.createElement("button");
+
     if(eqn.value==""){
         return;
     }
     i++;
+
+    unrendered.setAttribute("id", "unren"+i);
+    unrendered.setAttribute("class", "hidden");
+    unrendered.innerText = eqn.value;
+
+
     rendered.setAttribute("id", "ren"+i);
     del.setAttribute("class", "bbtn bbtn-cloud");
     del.setAttribute("onclick", `delLine(${i})`);
@@ -34,7 +43,6 @@ function run(){
     ed.setAttribute("onclick", `callEdit(${i})`);
     ed.setAttribute("id", `ed${i}`);
     ed.innerText = "E";
-    
     katex.render(eqn.value, rendered, {
         throwOnError: false
     });
@@ -52,12 +60,14 @@ function run(){
     item.appendChild(del);
     item.appendChild(ed);
     item.appendChild(rendered);
+    item.appendChild(unrendered);
     result.appendChild(item);
     eqn.value = "";
 }        
 
 function delLine(index){
     document.querySelector("#ren"+index).remove();
+    document.querySelector("#unren"+index).remove();
     document.querySelector("#del"+index).remove();
     document.querySelector("#ed"+index).remove();
 }
@@ -80,6 +90,10 @@ function callEdit(index){
     let newForm = document.getElementById('newForm');
     let editForm = document.getElementById('editForm');
     let lineId = document.getElementById('lineId');
+    let editEqn = document.getElementById('editEqn');
+
+    let text = document.getElementById('unren'+index).innerText;
+    editEqn.value = text;
     newForm.classList.add("hidden");
     editForm.classList.remove("hidden");
     lineId.value = index;
@@ -91,6 +105,8 @@ function edit(){
     let editForm = document.getElementById('editForm');
     let lineId = document.getElementById('lineId').value;
     let line = document.getElementById('ren'+lineId);
+    let unren = document.getElementById('unren'+lineId);
+    unren.innerHTML = editEqn.value;    
     katex.render(editEqn.value, line, {
         throwOnError: false
     });
