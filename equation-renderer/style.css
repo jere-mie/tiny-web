@@ -13,3 +13,21 @@ input[type="text"]{
     display: inline-block;
     margin-left: 22px;
 }
+
+.draggable {
+    cursor: move;
+}
+
+.draggable.dragging{
+    opacity: .5;
+}
+
+
+@media print{
+    h1, input, button{
+        display: none;
+    }
+    *{
+        font-size: 1.15rem;
+    }
+}
