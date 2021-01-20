@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:site_name" content="Cover Letter Creator" />
+    <meta property="og:title" content="Cover Letter Creator" />
+    <meta property="og:description" content="Create cover letters easily and on the fly" />
+    <meta property="og:type" content="website" />
+
+    <title>Cover Letter Generator</title>
+    <link rel="stylesheet" href="https://css.bornais.ca/css/bornais.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="noprint">
+        <h1 class="thin">Cover Letter Creator</h1>
+        <form onsubmit="generate(); return false">
+            <!-- <input type="text" placeholder="Date" id="date" required> -->
+            <input type="text" placeholder="Company" id="company" required>
+            <input type="text" placeholder="Job Title" id="job" required>
+            <input type="text" placeholder="Recruiter Name" id="name">
+            <button class="bbtn bbtn-azure" type="submit">Generate</button>
+            <!-- <button class="bbtn bbtn-cash" onclick="print()">Print</button> -->
+        </form>        
+    </div>
+    <div class="header">
+        <h1>JEREMIE BORNAIS</h1>
+        <p>778 Concession 2 North, Amherstburg, ON, N9V 3R3
+        <br>borna113@uwindsor.ca • (226) 350-2944 • http://jeremie.bornais.ca • http://github.com/jere-mie</p>
+    </div>
+    <div class="content">
+        <br>
+        <p id="content-date"></p>
+        <br>
+        <p id="content-company"></p>
+        <p id="content-name"></p>
+        <p id="content-job"></p>
+        <br>
+        <p id="salutation"></p>
+        <br>
+        <p>As a seasoned programmer with experience in software development, I hope to join your team in the role of <b id="bold-job"></b>. I am seeking an opportunity to apply my skills in back-end development, object oriented programming, and user experience, as well as utilize my leadership acumen and problem solving skills to create meaningful solutions. I believe that my prior work and volunteer experience, and my hard skill set would be assets if selected for this position.</p>
+        <br>
+        <p>Currently, I am working towards an Honours Bachelor’s degree in Computer Science from the University of Windsor. I continue to add to my repertoire of programming skills, working in Python, Java, C, JavaScript, and Ruby. As a Research Assistant, I have had the opportunity to apply these skills in a professional setting, leading development of a full web application for Dr. Drew Marquardt for the analysis and visualization of test data. In doing so, I have encountered and tackled various problems and made back-end design decisions to improve performance significantly.</p>
+        <br>
+        <p>Moreover, during my time at the University of Windsor I have engaged in several leadership opportunities on campus. Namely, I was elected the Vice President of the Computer Science Society, representing the needs and wishes of over 500 students. I have also been involved in 10 hackathon competitions, where I used my problem solving skills to win four separate awards, one being for first place. This experience prompted me to co-found two local hackathons, where I showed leadership acumen by leading development of both event websites, instructing volunteers, and maintaining relationships with sponsors.</p>
+        <br>
+        <p>I look forward to speaking with you in the future about my qualifications, experience, and ideas, and how they relate to <span id="company-name"></span>. Feel free to contact me via phone or email at your earliest convenience. I thank you for your time and consideration.</p>
+        <br>
+        <p>Sincerely,</p>
+        <br>
+        <img src="signature.png" width="200px">
+        <br>
+        <p>Jeremie Bornais</p>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

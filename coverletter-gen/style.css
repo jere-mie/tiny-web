@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+input[type="text"]{
+    padding: 6px 10px;
+    font-size: 1.3rem;
+    width: 20%;
+}
+.noprint{
+    padding: 3rem 10rem;
+    background-color: aliceblue;
+}
+
+.noprint h1{
+    font-size: 3rem;
+}
+
+
+@media print{
+    .noprint{
+        display: none;
+    }
+}
