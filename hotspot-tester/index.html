@@ -17,7 +17,7 @@
             font-size: 1.5rem;
             padding: 0.5rem 0.5rem;
             margin: 10px 20px;
-            border-radius: 100px;
+            /* border-radius: 100px; */
             width: auto;
         }
         button{
@@ -60,7 +60,8 @@
         <form onsubmit="run(); return false;">
             <p class="center">
                 <input class="center" type="text" id="code" placeholder="Postal Code">
-                <button type="submit">Search</button>    
+                <button type="submit">Search</button><br><br>
+                <a class="center" target="_blank" href="https://toronto.ctvnews.ca/full-list-of-ontario-neighbourhoods-where-the-covid-19-vaccine-will-be-available-to-those-18-1.5379755">Source for list of Postal Codes declared as COVID-19 Hotspots</a>
             </p>
         </form>
     </div>
@@ -80,6 +81,7 @@
                 result.classList.add('no');
                 result.innerText = "You DO NOT live in a COVID-19 Hotspot!"
             }
+            code.value=""
         }
     </script>
 </body>
