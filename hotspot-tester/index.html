@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://css.bornais.ca/css/bornais.css"></link>
+    <title>Ontario COVID Hotspot Tester</title>
+    <meta property="og:site_name" content="COVID-19 Hotspot Tester (Ontario)" />
+    <meta property="og:title" content="Ontario COVID-19 Hotspot Tester" />
+    <meta property="og:description" content="Find out whether or not you live in a COVID-19 Hotspot" />
+    <meta property="og:image" content="https://www.plympton-wyoming.com/en/municipal-office/resources/banner.png" />
+    <meta property="og:type" content="website" />
+
+<style>
+        input{
+            font-size: 1.5rem;
+            padding: 0.5rem 0.5rem;
+            margin: 10px 20px;
+            border-radius: 100px;
+            width: auto;
+        }
+        button{
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            margin: 10px 20px;
+            border-radius: 10px;
+            border-color: rgba(0,0,0,0);
+            background-color: rgb(56, 120, 240);
+            color: white;
+        }
+        button:hover{
+            background-color: rgb(47, 104, 209);
+            transition-duration: 200ms;
+
+        }
+        .no{
+            background-color: rgb(197, 243, 197);
+        }
+        .yes{
+            background-color: rgb(243, 202, 197);
+        }
+        #results{
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            border-radius: 25px;
+        }
+        .hidden{
+            background-color: rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top: 10%;">
+        <div id="results" class="center hidden">
+            You do not live in a covid hot spot
+        </div>
+        <h1 class="thin center" style="font-size: 3rem;">Am I in a Covid Hot Spot? (Ontario)</h1>
+        <form onsubmit="run(); return false;">
+            <p class="center">
+                <input class="center" type="text" id="code" placeholder="Postal Code">
+                <button type="submit">Search</button>    
+            </p>
+        </form>
+    </div>
+    <script>
+        function run(){
+            let code = document.getElementById('code');
+            let result = document.getElementById('results');
+            let codes = ["M1B","M1C","M1E","M1G","M1H","M1J","M1K","M1M","M1P","M1R","M1X","M2J","M2M","M2R","M3A","M3C","M3H","M4A","M3J","M3K","M3L","M3M","M3N","M6B","M6L","M6M","M9L","M9M","M9N","M9P","M4X","M5A","M5B","M5N","M6A","M5V","M6E","M6H","M6K","M6N","M8V","M9A","M9B","M9C","M9R","M9V","M9W","M1L","M4H","M1S","M1T","M1V","M1W","L4T","L4W","L4X","L4Z","L5A","L5B","L5R","L5C","L5K","L5L","L5M","L5N","L5V","L5W","L6P","L6R","L6S","L6T","L7C","L6V","L6W","L6X","L6Y","L6Z","L7A","L0J","L4B","L4E","L4H","L4J","L4K","L4L","L6A","L3S","L3T","L6B","L6C","L6E","L1S","L1T","L1V","L1X","L1Z","L9E","L8W","L9C","L2G","L3Z","N2C","N1K","N8X","N8Y","N9A","N9B","N9C","N8H","N9Y","N5H","K1T","K1V","K2V"];
+            if(codes.includes(code.value.toUpperCase().substring(0,3))){
+                result.classList.remove('hidden');
+                result.classList.remove('no');
+                result.classList.add('yes');
+                result.innerText = "You DO live in a COVID-19 Hotspot!"
+            }else{
+                result.classList.remove('hidden');
+                result.classList.remove('yes');
+                result.classList.add('no');
+                result.innerText = "You DO NOT live in a COVID-19 Hotspot!"
+            }
+        }
+    </script>
+</body>
+</html>
