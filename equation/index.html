@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Equation Maker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://css.bornais.ca/css/bornais.css"></link>
+    <style>
+        .katex { font-size: 1.5em; }
+    </style>
+</head>
+<body>
+
+        <div class="center">
+            <h1 class="thin">Welcome to the Simple Equation Renderer</h1>
+            <p>Simply type your latex in the left, then hit CTRL+Enter to render it!</p>
+        </div>
+        <div style="float: left;">
+            <textarea name="input" id="input" cols="30" rows="10" style="width: 700px; height: 500px; font-size: 1.5rem; margin-right: 15px;"></textarea>
+        </div>
+        <div style="float: left;" id="output">
+        </div>
+
+    <div id="elem"></div>
+    <script>
+        document.addEventListener('keydown', (e)=>{
+            if(e.keyCode===13 && e.ctrlKey){
+                render();
+            }
+        });
+
+        let render = ()=>{
+            let input = document.querySelector('#input').value.split('\n');
+            let output = document.querySelector('#output');
+            output.innerHTML = '';
+            for(let i=0; i<input.length; i++){
+                // alert(input[i])
+                let elem = document.createElement('div')
+                output.appendChild(elem);
+                katex.render(input[i], elem, {
+                    throwOnError: false
+                });
+            }
+        }
+        </script>    
+</body>
+</html>
