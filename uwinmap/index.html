@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>UWindsor Building Finder</title>
+    <meta property="og:site_name" content="UWindsor Building Finder" />
+    <meta property="og:title" content="University of Windsor Map of Buildings" />
+    <meta property="og:description" content="A handy utility to find different buildings on campus" />
+    <meta property="og:type" content="website" />
+</head>
+
+<body>
+    <div class="pt-2 container text-center">
+        <h1>UWindsor Building Finder</h1>
+        <h3>Choose a building - it will be highlighted on the map</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <select id="choice"  class="form-control mt-2" id="exampleFormControlSelect1">
+                    <option>AC - Assumption Chapel</option>
+                    <option>BB - Biology Building</option>
+                    <option>CE - Centre for Engineering Innovation</option>
+                    <option>CEI - Centre for Engineering Innovation</option>
+                    <option>CH - Cartier Hall</option>
+                    <option>CN - Chrysler Hall North</option>
+                    <option>CS - Chrysler Hall South</option>
+                    <option>DB - Drama Building</option>
+                    <option>DH - Dillon Hall</option>
+                    <option>ED - Neal Education Building</option>
+                    <option>EH - Essex Hall</option>
+                    <option>ER - Erie Hall</option>
+                    <option>JC - Jackman Dramatic Art Centre</option>
+                    <option>LB - Ianni Law Building</option>
+                    <option>LL - Leddy Library</option>
+                    <option>LT - Lambton Tower</option>
+                    <option>MB - O'Neil Medical Education Centre</option>
+                    <option>MC - Macdonald Hall</option>
+                    <option>MH - Memorial Hall</option>
+                    <option>MU - Music Building</option>
+                    <option>OB - Odette Building</option>
+                    <option>TC - Toldo Health Education Centre</option>
+                    <option>UC - C.A.W. Student Centre</option>
+                    <option>VH - Vanier Hall</option>
+                    <option>WC - Welcome Centre</option>
+                    <option>WL - West Library</option>            
+                  </select>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <img id="map" src="https://uwindsorcss.github.io/files/dir/images/buildings/AC.png" alt="UWindsor Map" style="width: 100%; margin-top: 10px;">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        const selectElement = document.querySelector('#choice');
+        selectElement.addEventListener('change', (event)=> {
+            const img = document.querySelector('#map');
+            img.setAttribute('src', `https://uwindsorcss.github.io/files/dir/images/buildings/${event.target.value.slice(0, 2)}.png`);
+        });
+    </script>
+</body>
+
+</html>
