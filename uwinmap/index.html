@@ -53,7 +53,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <img id="map" src="https://uwindsorcss.github.io/files/dir/images/buildings/AC.png" alt="UWindsor Map" style="width: 100%; margin-top: 10px;">
+                <img id="map" src="./img/AC.png" alt="UWindsor Map" style="width: 100%; margin-top: 10px;">
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
         const selectElement = document.querySelector('#choice');
         selectElement.addEventListener('change', (event)=> {
             const img = document.querySelector('#map');
-            img.setAttribute('src', `https://uwindsorcss.github.io/files/dir/images/buildings/${event.target.value.slice(0, 2)}.png`);
+            img.setAttribute('src', `./img/${event.target.value.slice(0, 2)}.png`);
         });
     </script>
 </body>
