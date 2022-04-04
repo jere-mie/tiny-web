@@ -10,24 +10,29 @@ body{
     flex-direction: column;
 }
 
+h1 {
+    padding-top: 5rem;
+    font-size: 2.5rem;
+}
+
 input{
-    padding: 4px 8px;
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    margin: 8px;
 }
 
 .btn{
-    background-color: palevioletred;
-    padding: 4px 8px;
     border-radius: 4px;
-    border-style: none;
     border-style: solid;
-    border-color: rgba(255, 56, 212, 0);
-    /* color: green; */
+    background-color: white;
+    color: palevioletred;
+    border-color: palevioletred;
 }
 
 .btn:hover{
-    transition-duration: 100ms;
-    background-color: rgba(0,0,0,0);
-    color: palevioletred;
-    border-style: solid;
-    border-color: palevioletred;
+    transition-duration: 300ms;
+    color: white;
+    background-color: palevioletred;
+    border-color: rgba(255, 56, 212, 0);
+
 }

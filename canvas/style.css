@@ -24,10 +24,12 @@ body{
 }
 
 .drawform input{
+    font-size: 1.3rem;
     padding: 8px;
     margin: 5px;
 }
 .drawform button{
+    font-size: 1.3rem;
     padding: 8px;
     margin: 5px;
 }
