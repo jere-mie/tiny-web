@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+          font-family: 'Courier New', Courier, monospace;
+          background-color: black;
+        }
+        #terminal{
+            font-size: 1rem;
+            padding: 32px;
+            background-color: black;
+            color: white;
+        }
+        #termIn{
+            background-color: black;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            padding: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="terminal">
+        <div id="termOut">
+        </div>
+
+        <span id="termStart">
+            <span style="color: rgb(38, 202, 38);">jeremie@bornais</span>
+            <span style="color: white;">:</span>
+            <span style="color: rgb(93, 93, 243);">~</span>
+            <span style="color: white;">$ </span>    
+        </span>
+        <input type="text" id="termIn" autocomplete="false" spellcheck="false" autofocus>
+    </div>
+
+<script>
+    let termIn = document.querySelector("#termIn");
+    let termOut = document.querySelector("#termOut");
+    let termStart = document.querySelector("#termStart");
+
+    let commands = [];
+    function addCommand(commandName, callBack){
+        commands.push({name:commandName, run:callBack});
+    }
+
+    addCommand('ping', ()=>{return 'pong'});
+    addCommand('deez', ()=>{return 'nuts'});
+    addCommand('clear', ()=>{
+        termOut.innerHTML = "";
+        return '';
+    });
+    addCommand('cls', ()=>{
+        termOut.innerHTML = "";
+        return '';
+    });
+
+    termIn.addEventListener("keyup", event => {
+        if(event.key !== "Enter") return;
+
+        let input = termIn.value;
+        console.log(input);
+        let out = document.createElement('span');
+        out.innerText = `${input}`;
+        termOut.appendChild(termStart.cloneNode(true));
+        termOut.appendChild(out);
+        termOut.appendChild(document.createElement('br'));
+
+        // run the func
+        cmdOut = '';
+
+        for (let i = 0; i <= commands.length; i++){
+            if (i == commands.length){
+                cmdOut = `-bash: ${input}: command not found`;
+                break;
+            }
+            if (commands[i].name == input){
+                cmdOut = commands[i].run();
+                break;
+            }
+        }
+
+        let cmdOutElem = document.createElement('span');
+        cmdOutElem.innerText = cmdOut;
+        termOut.appendChild(cmdOutElem);
+        if (cmdOut)
+            termOut.appendChild(document.createElement('br'));
+
+
+        termIn.value = '';
+        event.preventDefault();
+    });
+
+
+</script>
+</body>
+</html>
