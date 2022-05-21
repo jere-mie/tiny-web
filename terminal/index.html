@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:site_name" content="Jeremie Bornais" />
     <meta property="og:title" content="Web Terminal Simulator" />
-    <meta property="og:description" content="A fun website that simulates the behaviour of a typical UNIX terminal" />
+    <meta property="og:description" content="A fun website that simulates the behaviour of a typical bash shell" />
     <meta property="og:type" content="website" />
 
     <title>Jeremie's Web Terminal</title>
@@ -96,6 +96,45 @@
       addCommand("mozzarella", (opt) => {
         return '<img src="./img/mozz.gif" />';
       });
+      addCommand("cd", (opt) => {
+        switch(opt){
+          case "":
+          case ".":
+            return "";
+          case "website":
+            window.open("https://jeremie.bornais.ca");
+            return "";
+          case "email":
+            window.open("mailto:jeremie@bornais.ca");
+            return "";
+          case "linkedin":
+            window.open("https://ca.linkedin.com/in/jeremie-bornais");
+            return "";
+          case "/":
+          case "~":
+          case "..":
+            return `cd: permission denied: ${opt}`;
+          default:
+            return `-bash: cd: ${opt}: No such file or directory`;
+        }
+      });
+      addCommand("ls", (opt) => {
+        return `
+        <style>
+          .links a{
+            color: rgb(93, 93, 243);
+            padding-right: 16px;
+            text-decoration: none;
+          }
+        </style>
+        <span class="links">
+          <a href="http://jeremie.bornais.ca" target="__blank">website</a>
+          <a href="mailto:jeremie@bornais.ca" target="__blank">email</a>
+          <a href="https://ca.linkedin.com/in/jeremie-bornais" target="__blank">linkedin</a>
+        </span>
+        `;
+      });
+      
       addCommand("help", (opt) => {
           return `
 <style>
@@ -161,7 +200,7 @@
 
       function parseInput(inStr) {
         actualCommand = inStr.split(" ")[0];
-        theRest = inStr.slice(actualCommand.length);
+        theRest = inStr.slice(actualCommand.length+1);
         returnObj = { command: actualCommand, optional: theRest };
         return returnObj;
       }
