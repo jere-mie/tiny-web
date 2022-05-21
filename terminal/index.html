@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" onclick="focusInput();">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -202,11 +202,7 @@
         event.preventDefault();
       });
 
-      // this is a pretty bad solution but it works now
-      // basically it just makes sure the terminal is always focused
-      setInterval(() => {
-        termIn.focus();
-      }, 500);
+    let focusInput = () => {termIn.focus();};
     </script>
   </body>
 </html>
