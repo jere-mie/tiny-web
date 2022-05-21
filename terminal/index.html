@@ -1,104 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        *{
-          font-family: 'Courier New', Courier, monospace;
-          background-color: black;
-        }
-        #terminal{
-            font-size: 1rem;
-            padding: 32px;
-            background-color: black;
-            color: white;
-        }
-        #termIn{
-            background-color: black;
-            color: white;
-            font-size: 1rem;
-            border: none;
-            outline: none;
-            padding: 0;
-        }
+      * {
+        font-family: monospace, sans-serif;
+        background-color: black;
+      }
+      #terminal {
+        font-size: 1rem;
+        padding: 32px;
+        background-color: black;
+        color: white;
+      }
+      #input-wrapper {
+        display: flex;
+      }
+      #termIn {
+        background-color: black;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        outline: none;
+        padding: 0;
+        flex: 2;
+      }
+      #termStart {
+        padding-right: 0;
+        margin-right: 0;
+      }
+      #termStart span {
+        margin: 0;
+        padding: 0;
+      }
     </style>
-
-</head>
-<body>
+  </head>
+  <body>
     <div id="terminal">
-        <div id="termOut">
-        </div>
+      <div id="termOut"></div>
 
+      <div id="input-wrapper">
         <span id="termStart">
-            <span style="color: rgb(38, 202, 38);">jeremie@bornais</span>
-            <span style="color: white;">:</span>
-            <span style="color: rgb(93, 93, 243);">~</span>
-            <span style="color: white;">$ </span>    
+          <span style="color: rgb(38, 202, 38)">jeremie@bornais</span>
+          <span style="color: white">:</span>
+          <span style="color: rgb(93, 93, 243)">~</span>
+          <span style="color: white">$ </span>
         </span>
-        <input type="text" id="termIn" autocomplete="false" spellcheck="false" autofocus>
+        <input
+          type="text"
+          id="termIn"
+          autocomplete="false"
+          spellcheck="false"
+          autofocus
+          style="padding-left: 8.7px"
+        />
+      </div>
     </div>
 
-<script>
-    let termIn = document.querySelector("#termIn");
-    let termOut = document.querySelector("#termOut");
-    let termStart = document.querySelector("#termStart");
+    <script>
+      let termIn = document.querySelector("#termIn");
+      let termOut = document.querySelector("#termOut");
+      let termStart = document.querySelector("#termStart");
 
-    let commands = [];
-    function addCommand(commandName, callBack){
-        commands.push({name:commandName, run:callBack});
-    }
+      let commands = [];
+      function addCommand(commandName, callBack) {
+        commands.push({ name: commandName, run: callBack });
+      }
 
-    addCommand('ping', ()=>{return 'pong'});
-    addCommand('deez', ()=>{return 'nuts'});
-    addCommand('clear', ()=>{
+      addCommand("ping", (opt) => {
+        return "pong";
+      });
+      addCommand("deez", (opt) => {
+        return "nuts";
+      });
+      addCommand("clear", (opt) => {
         termOut.innerHTML = "";
-        return '';
-    });
-    addCommand('cls', ()=>{
+        return "";
+      });
+      addCommand("cls", (opt) => {
         termOut.innerHTML = "";
-        return '';
-    });
+        return "";
+      });
+      addCommand("echo", (opt) => {
+        return opt;
+      });
+      addCommand("mozzarella", (opt) => {
+        return '<img src="./img/mozz.gif" />';
+      });
+      addCommand("help", (opt) => {
+          return `
+<style>
+#helpTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    termIn.addEventListener("keyup", event => {
-        if(event.key !== "Enter") return;
+#helpTable td, #helpTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#helpTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#helpTable tr:hover {background-color: #ddd;}
+
+#helpTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+<br/>
+<h2>Welcome to the Help Menu!</h2>
+<p>Check out some info on the available commands in the table below</p>
+<br/>
+<table id="helpTable">
+  <tr>
+    <th>Command</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>ping</td>
+    <td>Displays 'pong' in the console</td>
+  </tr>
+  <tr>
+    <td>deez</td>
+    <td>Displays 'nuts' in the console</td>
+  </tr>
+  <tr>
+    <td>help</td>
+    <td>Displays a table with info on common commands</td>
+  </tr>
+  <tr>
+    <td>clear (or cls)</td>
+    <td>Clears the terminal</td>
+  </tr>
+  <tr>
+    <td>echo</td>
+    <td>Echoes back whatever you type in</td>
+  </tr>
+  <tr>
+    <td>mozzarella</td>
+    <td>Displays mozzarella sticks in the terminal</td>
+  </tr>
+</table>
+          `
+      });
+
+      function parseInput(inStr) {
+        actualCommand = inStr.split(" ")[0];
+        theRest = inStr.slice(actualCommand.length);
+        returnObj = { command: actualCommand, optional: theRest };
+        return returnObj;
+      }
+
+      termIn.addEventListener("keyup", (event) => {
+        if (event.key !== "Enter") return;
 
         let input = termIn.value;
         console.log(input);
-        let out = document.createElement('span');
+        let out = document.createElement("span");
         out.innerText = `${input}`;
         termOut.appendChild(termStart.cloneNode(true));
         termOut.appendChild(out);
-        termOut.appendChild(document.createElement('br'));
+        termOut.appendChild(document.createElement("br"));
 
         // run the func
-        cmdOut = '';
+        cmdOut = "";
 
-        for (let i = 0; i <= commands.length; i++){
-            if (i == commands.length){
-                cmdOut = `-bash: ${input}: command not found`;
-                break;
-            }
-            if (commands[i].name == input){
-                cmdOut = commands[i].run();
-                break;
-            }
+        for (let i = 0; i <= commands.length; i++) {
+          let inCmd = parseInput(input).command;
+          let inOptional = parseInput(input).optional;
+          if (i == commands.length) {
+            cmdOut = `-bash: ${inCmd}: command not found`;
+            break;
+          }
+          if (commands[i].name == inCmd) {
+            cmdOut = commands[i].run(inOptional);
+            break;
+          }
         }
 
-        let cmdOutElem = document.createElement('span');
-        cmdOutElem.innerText = cmdOut;
+        let cmdOutElem = document.createElement("span");
+        cmdOutElem.innerHTML = cmdOut;
         termOut.appendChild(cmdOutElem);
-        if (cmdOut)
-            termOut.appendChild(document.createElement('br'));
+        if (cmdOut) termOut.appendChild(document.createElement("br"));
 
-
-        termIn.value = '';
+        termIn.value = "";
         event.preventDefault();
-    });
+      });
 
-
-</script>
-</body>
+      // this is a pretty bad solution but it works now
+      // basically it just makes sure the terminal is always focused
+      setInterval(() => {
+        termIn.focus();
+      }, 500);
+    </script>
+  </body>
 </html>
