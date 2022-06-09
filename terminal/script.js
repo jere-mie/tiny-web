@@ -2,13 +2,40 @@ let termIn = document.querySelector("#termIn");
 let termOut = document.querySelector("#termOut");
 let termStart = document.querySelector("#termStart");
 
+let history = [];
 let commands = [];
 function addCommand(commandName, callBack) {
   commands.push({ name: commandName, run: callBack });
 }
 
+let mozz = (opt) => {
+  if (opt) {
+    return `<img src="./img/mozz.gif" style="width:${opt.trim()}px;"/>`;
+  }
+  return '<img src="./img/mozz.gif" />';
+};
+
 addCommand("ping", (opt) => {
   return "pong";
+});
+addCommand("whoami", (opt) => {
+  return "jeremie";
+});
+addCommand("who", (opt) => {
+  return "";
+});
+addCommand("history", (opt) => {
+    let out = '';
+    for(let i=0; i<history.length; i++){
+        if(i<9){
+            out += `<span style="color:black;">_</span><span>${i+1}<span style="color:black;">__</span>${history[i]}</span>`
+        }else{
+            out += `<span>${i+1}<span style="color:black;">__</span>${history[i]}</span>`
+        }
+        if(i<history.length - 1)
+            out+="<br/>";
+    }
+    return out;
 });
 addCommand("deez", (opt) => {
   return "nuts";
@@ -25,7 +52,10 @@ addCommand("echo", (opt) => {
   return opt;
 });
 addCommand("mozzarella", (opt) => {
-  return '<img src="./img/mozz.gif" />';
+  return mozz(opt);
+});
+addCommand("mozz", (opt) => {
+  return mozz(opt);
 });
 addCommand("cd", (opt) => {
   switch (opt) {
@@ -68,6 +98,7 @@ termIn.addEventListener("keyup", (event) => {
   if (event.key !== "Enter") return;
 
   let input = termIn.value;
+  history.push(input);
   console.log(input);
   let out = document.createElement("span");
   out.innerText = `${input}`;

@@ -40,5 +40,5 @@ const lsTxt = `
     <a href="mailto:jeremie@bornais.ca" target="__blank">email</a>
     <a href="https://ca.linkedin.com/in/jeremie-bornais" target="__blank">linkedin</a>
     <a href="http://jeremie.bornais.ca" target="__blank">website</a>
-    </span>
+  </span>
 `
