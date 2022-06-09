@@ -1,0 +1,61 @@
+* {
+  font-family: monospace, sans-serif;
+  background-color: black;
+}
+#terminal {
+  font-size: 1rem;
+  padding: 16px;
+  background-color: black;
+  color: white;
+}
+#input-wrapper {
+  display: flex;
+}
+#termIn {
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  padding: 0;
+  flex: 2;
+  min-width: 10px;
+}
+#termStart {
+  padding-right: 0;
+  margin-right: 0;
+}
+#termStart span {
+  margin: 0;
+  padding: 0;
+}
+
+#helpTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#helpTable td,
+#helpTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#helpTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#helpTable tr:hover {
+  background-color: #ddd;
+}
+#helpTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+
+.links a {
+  color: rgb(93, 93, 243);
+  padding-right: 16px;
+  text-decoration: none;
+}
