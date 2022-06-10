@@ -1,9 +1,11 @@
-let termIn = document.querySelector("#termIn");
-let termOut = document.querySelector("#termOut");
-let termStart = document.querySelector("#termStart");
+const termIn = document.querySelector("#termIn");
+const termOut = document.querySelector("#termOut");
+const termStart = document.querySelector("#termStart");
 
-let history = [];
-let commands = [];
+const history = [];
+const commands = [];
+const filesFolders = [];
+
 function addCommand(commandName, callBack) {
   commands.push({ name: commandName, run: callBack });
 }

@@ -1,10 +1,3 @@
-let mozz = (opt) => {
-  if (opt) {
-    return `<img src="./img/mozz.gif" style="width:${opt.trim()}px;"/>`;
-  }
-  return '<img src="./img/mozz.gif" />';
-};
-
 addCommand("ping", (opt) => {
   return "pong";
 });
@@ -41,6 +34,15 @@ addCommand("cls", (opt) => {
 addCommand("echo", (opt) => {
   return opt;
 });
+
+// one function defined so we can use it for "mozzarella" and "mozz"
+let mozz = (opt) => {
+  if (opt) {
+    return `<img src="./img/mozz.gif" style="width:${opt.trim()}px;"/>`;
+  }
+  return '<img src="./img/mozz.gif" />';
+};
+
 addCommand("mozzarella", (opt) => {
   return mozz(opt);
 });
@@ -70,7 +72,20 @@ addCommand("cd", (opt) => {
   }
 });
 addCommand("ls", (opt) => {
-  return lsTxt; // found in html.js
+  out = `<span class="links">`;
+  end = `</span>`;
+  
+  filesFolders.sort( (a, b) => {return a.name > b.name ? 1: -1} );
+
+  for(const elem of filesFolders){
+    if(elem.type == 'folder'){
+      out += `<a href="${elem.content}" target="__blank">${elem.name}</a>`
+    }else if(elem.type == 'file'){
+      out+= `<span class="file">${elem.name}</span>`
+    }
+  }
+
+  return out + end;
 });
 
 addCommand("help", (opt) => {
