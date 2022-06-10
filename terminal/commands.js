@@ -162,3 +162,18 @@ addCommand("edit", (opt) =>{
   });
   return '';
 })
+
+addCommand('touch', (opt) => {
+  if(!opt.trim()){return 'touch: missing file operand'}
+  for(const elem of filesFolders){
+    if(opt.trim() == elem.name){
+      return '';
+    }
+  }
+  filesFolders.push({
+    name:opt.trim(),
+    type:"file",
+    content:''
+  });
+  return '';
+})
