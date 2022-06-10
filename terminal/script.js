@@ -17,9 +17,29 @@ function parseInput(inStr) {
   return returnObj;
 }
 
+let currHistoryIndex = 0;
+
 termIn.addEventListener("keyup", (event) => {
+  if (event.key == "ArrowUp"){
+    currHistoryIndex += 1;
+    if(currHistoryIndex > history.length){
+      currHistoryIndex = history.length;
+    }
+    termIn.value = history[history.length-currHistoryIndex];
+  }
+  if (event.key == "ArrowDown"){
+    currHistoryIndex -= 1;
+    if(currHistoryIndex == 0){
+      termIn.value = '';
+    }else if(currHistoryIndex < 0){
+      currHistoryIndex = 0;
+    }else{
+      termIn.value = history[history.length-currHistoryIndex];
+    }
+  };
   if (event.key !== "Enter") return;
 
+  currHistoryIndex = 0;
   let input = termIn.value;
   history.push(input);
   console.log(input);
@@ -57,3 +77,10 @@ termIn.addEventListener("keyup", (event) => {
 let focusInput = () => {
   termIn.focus();
 };
+
+Mousetrap.bind('?', function() { alert('keyboard shortcuts'); });
+
+Mousetrap.bind('ctrl+l', (e) => {
+  termOut.innerHTML = '';
+  return false;
+});

@@ -1,12 +1,15 @@
 addCommand("ping", (opt) => {
   return "pong";
 });
+
 addCommand("whoami", (opt) => {
   return "jeremie";
 });
+
 addCommand("who", (opt) => {
   return "";
 });
+
 addCommand("history", (opt) => {
     let out = '';
     for(let i=0; i<history.length; i++){
@@ -20,19 +23,35 @@ addCommand("history", (opt) => {
     }
     return out;
 });
+
 addCommand("deez", (opt) => {
   return "nuts";
 });
+
 addCommand("clear", (opt) => {
   termOut.innerHTML = "";
   return "";
 });
+
 addCommand("cls", (opt) => {
   termOut.innerHTML = "";
   return "";
 });
+
 addCommand("echo", (opt) => {
   return opt;
+});
+
+addCommand('mkdir', (opt) => {
+  if(!opt.trim()){
+    return `mkdir: missing operand`;
+  }
+  for(const elem of filesFolders){
+    if(elem.name == opt.trim()){
+      return `mkdir: cannot create directory '${opt.trim()}': File exists`;
+    }
+  }
+  return `mkdir: cannot create directory '${opt.trim()}': Permission denied`
 });
 
 // one function defined so we can use it for "mozzarella" and "mozz"
@@ -46,9 +65,11 @@ let mozz = (opt) => {
 addCommand("mozzarella", (opt) => {
   return mozz(opt);
 });
+
 addCommand("mozz", (opt) => {
   return mozz(opt);
 });
+
 addCommand("cd", (opt) => {
   switch (opt) {
     case "":
@@ -71,6 +92,25 @@ addCommand("cd", (opt) => {
       return `-bash: cd: ${opt}: No such file or directory`;
   }
 });
+
+addCommand("cat", (opt)=>{
+  out = ``;
+  if(!opt.trim()){
+    return `<img src="https://media4.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"></img>`
+  }else{
+    for(const elem of filesFolders){
+      if (elem.name == opt.trim()){
+        if(elem.type == 'file'){
+          return elem.content.trim().replaceAll('\n', '<br/>');
+        }else{
+          return `cat - ${opt.trim()}: Is a directory`
+        }
+      }
+    }
+    return `cat - ${opt.trim()}: No such file or directory`
+  }
+})
+
 addCommand("ls", (opt) => {
   out = `<span class="links">`;
   end = `</span>`;
@@ -92,3 +132,33 @@ addCommand("help", (opt) => {
   return helpTableTxt; // found in html.js
 });
 
+addCommand("edit", (opt) =>{
+  if(!opt){return '';}
+  if(opt.trim() == 'readme.txt'){
+    return `edit: cannot edit file '${opt.trim()}': Permission denied`
+  }
+  for(let i=0; i<filesFolders.length; i++){
+    if(filesFolders[i].name == opt.trim()){
+      if(filesFolders[i].type == 'folder'){
+        return `edit - ${opt.trim()}: Is a directory`
+      }else{
+        let content = prompt(`Please enter the contents of ${opt.trim()}`, filesFolders[i].content);
+        if(!content || content == ''){
+          return '';
+        }
+        filesFolders[i].content = content;
+        return '';
+      }
+    }
+  }
+  let content = prompt(`Please enter the contents of ${opt.trim()}`);
+  if(!content || content == ''){
+    return '';
+  }
+  filesFolders.push({
+    name:opt.trim(),
+    type:"file",
+    content:content
+  });
+  return '';
+})

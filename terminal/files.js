@@ -18,6 +18,14 @@ filesFolders.push({
 
 filesFolders.push({
     type:"file",
-    name:"testFile",
-    content:"Hello World!"
+    name:"readme.txt",
+    content:`Welcome to my Web Terminal Simulator!
+Created by Jeremie Bornais
+=================================
+
+I created this using simple HTML, CSS, and Vanilla Javascript.
+Check out the 'help' command for a list of some commonly used commands.
+If you think a command should be included that isn't, submit an issue
+at https://github.com/jere-mie/tiny-web.
+    `
 });
