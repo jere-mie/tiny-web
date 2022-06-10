@@ -78,8 +78,6 @@ let focusInput = () => {
   termIn.focus();
 };
 
-Mousetrap.bind('?', function() { alert('keyboard shortcuts'); });
-
 Mousetrap.bind('ctrl+l', (e) => {
   termOut.innerHTML = '';
   return false;
