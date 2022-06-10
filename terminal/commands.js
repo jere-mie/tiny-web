@@ -54,6 +54,22 @@ addCommand('mkdir', (opt) => {
   return `mkdir: cannot create directory '${opt.trim()}': Permission denied`
 });
 
+addCommand('rmdir', (opt) => {
+  if(!opt.trim()){
+    return `rmdir: missing operand`;
+  }
+  for(const elem of filesFolders){
+    if(elem.name == opt.trim()){
+      if(elem.type == 'folder'){
+        return `rmdir: failed to remove '${opt.trim()}': Permission denied`;
+      }else{
+        return `rmdir: failed to remove '${opt.trim()}': Not a directory`;
+      }
+    }
+  }
+  return `rmdir: failed to remove '${opt.trim()}': No such file or directory`
+});
+
 // one function defined so we can use it for "mozzarella" and "mozz"
 let mozz = (opt) => {
   if (opt) {
@@ -182,4 +198,8 @@ addCommand('exit', (opt) => {
   document.getElementById('html').innerHTML = '';
   document.getElementById('html').setAttribute(`style`, `background-color:black;`);
   return '';
+})
+
+addCommand('pwd', (opt) => {
+  return '/home/jeremie';
 })

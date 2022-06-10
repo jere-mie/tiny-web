@@ -57,6 +57,14 @@ const helpTableTxt = `
     <td>Displays 'pong' in the console</td>
   </tr>
   <tr>
+    <td>pwd</td>
+    <td>Prints the current working directory</td>
+  </tr>
+  <tr>
+    <td>rmdir</td>
+    <td>Removes a directory</td>
+  </tr>
+  <tr>
     <td>touch</td>
     <td>Creates an empty file with a specified filename</td>
   </tr>
