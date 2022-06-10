@@ -33,6 +33,10 @@ const helpTableTxt = `
     <td>Edits the contents of a file (existing or new)</td>
   </tr>
   <tr>
+    <td>exit</td>
+    <td>Kills the terminal</td>
+  </tr>
+  <tr>
     <td>help</td>
     <td>Displays a table with info on common commands</td>
   </tr>

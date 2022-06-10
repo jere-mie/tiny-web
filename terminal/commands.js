@@ -177,3 +177,9 @@ addCommand('touch', (opt) => {
   });
   return '';
 })
+
+addCommand('exit', (opt) => {
+  document.getElementById('html').innerHTML = '';
+  document.getElementById('html').setAttribute(`style`, `background-color:black;`);
+  return '';
+})
