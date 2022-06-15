@@ -14,9 +14,9 @@ addCommand("history", (opt) => {
     let out = '';
     for(let i=0; i<history.length; i++){
         if(i<9){
-            out += `<span style="color:black;">_</span><span>${i+1}<span style="color:black;">__</span>${history[i]}</span>`
+            out += `<span>&nbsp;${i+1}&nbsp;&nbsp;&nbsp;${history[i]}</span>`
         }else{
-            out += `<span>${i+1}<span style="color:black;">__</span>${history[i]}</span>`
+            out += `<span>${i+1}&nbsp;&nbsp;&nbsp;${history[i]}</span>`
         }
         if(i<history.length - 1)
             out+="<br/>";
