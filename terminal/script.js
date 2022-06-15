@@ -69,7 +69,7 @@ termIn.addEventListener("keyup", (event) => {
   cmdOutElem.innerHTML = cmdOut;
   termOut.appendChild(cmdOutElem);
   if (cmdOut) termOut.appendChild(document.createElement("br"));
-
+  window.scrollTo(0, document.body.scrollHeight);
   termIn.value = "";
   event.preventDefault();
 });
