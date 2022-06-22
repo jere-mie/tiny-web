@@ -13,6 +13,10 @@
     <meta property="og:title" content="University of Windsor Map of Buildings" />
     <meta property="og:description" content="A handy utility to find different buildings on campus" />
     <meta property="og:type" content="website" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/apple-icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
 </head>
 
 <body>
@@ -68,6 +72,11 @@
             img.setAttribute('src', `./img/${event.target.value.slice(0, 2)}.png`);
         });
     </script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/uwinmap/sw.js");
+        }
+        </script>
 </body>
 
 </html>
