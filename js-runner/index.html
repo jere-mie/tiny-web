@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- codemirror -->
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror/theme/dracula.css">
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+    <script src="codemirror/addon/edit/closebrackets.js"></script>
+    <script src="codemirror/addon/edit/matchbrackets.js"></script>    
+
+    <title>JS-Runner</title>
+</head>
+<body>
+    <div class="container">
+        <br><br>
+        <h1 class="text-center">JS Runner</h1>
+        <br><br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Input</h2>
+                <textarea name="inp" id="inp" rows="10" style="width: 90%;"></textarea>
+                <br>
+                <br>
+                <button class="btn btn-lg btn-primary" onclick="runJS();">Run</button>
+            </div>
+            <div class="col-md-6">
+                <h2>Output</h2>
+                <textarea name="outp" id="outp" rows="10" style="width: 90%;" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <script>
+        let inp = document.getElementById('inp');
+        let outp = document.getElementById('outp');
+        let editorconf = {
+            mode: "text/javascript",
+            theme: "dracula",
+            lineNumbers: true,
+            matchBrackets: true,
+            autoCloseBrackets: true
+        }
+        let editor = CodeMirror.fromTextArea(inp, editorconf);
+        let runJS = () => {
+            editor.save();
+            let code = inp.value;
+            let output = eval(code);
+            outp.value = output;
+        }
+
+    </script>
+</body>
+</html>
