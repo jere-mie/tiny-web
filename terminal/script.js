@@ -1,3 +1,5 @@
+const terminal = document.querySelector("#terminal"); //entire terminal section
+const editor = document.querySelector("#editor"); //file editor
 const termIn = document.querySelector("#termIn");
 const termOut = document.querySelector("#termOut");
 const termStart = document.querySelector("#termStart");

@@ -11,9 +11,11 @@
 
     <title>Jeremie's Web Terminal</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="editor.css">
+    
   </head>
   <body>
-    <div id="terminal">
+    <div id="terminal" class="">
       <div id="termOut"></div>
 
       <div id="input-wrapper">
@@ -34,7 +36,25 @@
         />
       </div>
     </div>
-
+    <div id="editor" class="hidden">
+      <div id="editortop">
+        <div id="editortitle">
+          <span>&nbsp;&nbsp;&nbsp;BORNAIS nano 1.0</span>
+          <span id="editorfilename" style="text-align: center;">filename</span>
+          <span></span>  
+        </div>
+        <div id="editorarea">
+          <textarea name="editortextarea" id="editortextarea"></textarea>
+        </div>
+      </div>
+      <div id="editorbottom">
+        <p id="editormessage" class="hidden"></p>
+        <div id="editorshortcuts">
+          <span><b>^O</b> Write Out (Save)</span>
+          <span><b>^X</b> Exit</span>  
+        </div>
+      </div>
+    </div>
     <script src="mousetrap.min.js"></script>
     <script src="html.js"></script>
     <script src="script.js"></script>

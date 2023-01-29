@@ -1,3 +1,7 @@
+.hidden {
+  display: none !important;
+}
+
 * {
   font-family: monospace, sans-serif;
   background-color: black;

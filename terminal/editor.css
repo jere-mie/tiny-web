@@ -1,0 +1,76 @@
+#editor {
+    color: white;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#editortitle {
+    background-color: #bbb;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+#editortitle span {
+    background-color: #bbb;
+    color: black;
+    width: 33%;
+}
+
+#editorshortcuts {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#editorshortcuts span {
+    background-color: black;
+    color: white;
+}
+
+#editorshortcuts span b {
+    background-color: #bbb;
+    color: black;
+    font-weight: 400;
+}
+
+#editortop {
+    flex-grow: 100;
+}
+
+#editorarea {
+    height: calc(100% - 2rem);
+}
+
+#editortextarea {
+    width: 99%;
+    height: 100%;
+
+    border: none;
+    resize: none;
+    outline: none;
+    color: white;
+}
+
+#editortextarea::-webkit-scrollbar-track {
+    background-color: black;
+}
+
+#editortextarea::-webkit-scrollbar {
+    width: 6px;
+    background-color: #bbb;
+}
+
+#editortextarea::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    box-shadow: none;
+    background-color: #bbb;
+}
+
+#editormessage {
+    background-color: #bbb;
+    color: black;
+    text-align: center;
+    margin: 0 0 12px 0;
+}
