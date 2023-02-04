@@ -203,3 +203,10 @@ addCommand('exit', (opt) => {
 addCommand('pwd', (opt) => {
   return '/home/jeremie';
 })
+
+addCommand("nano", (opt) => {
+  document.getElementById('terminal').setAttribute('class', 'hidden');
+  document.getElementById('editor').setAttribute('class', '');
+  document.getElementById('editortextarea').focus();
+  return `edited "${opt}"`;
+});
