@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD Exchange Rates</title>
+    <link rel="stylesheet" href="../common/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../common/pico.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1>CAD, USD, MXN Conversion Rates</h1>
+        <hr>
+        <form>
+            <label for="fromCurrency">From Currency:</label>
+            <select name="fromCurrency" id="fromCurrency">
+                <option value="CAD">CAD</option>
+                <option value="USD">USD</option>
+                <option value="MXN">MXN</option>
+            </select>
+
+            <label for="toCurrency">To Currency:</label>
+            <select name="toCurrency" id="toCurrency">
+                <option value="CAD">CAD</option>
+                <option value="USD">USD</option>
+                <option value="MXN">MXN</option>
+            </select>
+
+            <label for="exchangeRate">Exchange Rate:</label>
+            <input type="text" name="exchangeRate" id="exchangeRate" placeholder="Enter exchange rate">
+
+            <label for="foreignExchangeFee">Foreign Exchange Fee:</label>
+            <select name="foreignExchangeFee" id="foreignExchangeFee">
+                <option value="0">0%</option>
+                <option value="1.5">1.5%</option>
+                <option value="2">2%</option>
+                <option value="2.5">2.5%</option>
+            </select>
+
+            <label for="fixedAmountFee">Fixed Amount Fee:</label>
+            <input type="text" name="fixedAmountFee" id="fixedAmountFee" placeholder="Enter fixed amount fee">
+
+            <button type="submit">Convert</button>
+        </form>
+    </div>
+</body>
+
+</html>
