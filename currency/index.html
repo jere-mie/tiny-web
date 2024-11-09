@@ -24,12 +24,15 @@
             font-family: Arial, sans-serif;
         }
 
+        div.inputcontainer {
+            width: 100%;
+            max-width: 458px;
+        }
+
         input[type="text"] {
             padding: 0.5rem;
             margin: 10px;
             font-size: 1.5rem;
-            width: 100%;
-            max-width: 500px;
             border: none;
             border-radius: 0.25rem;
             background-color: #e0e0e0;
@@ -60,15 +63,15 @@
 <body>
     <h1 style="text-align: center;">Currency Converter</h1>
     <div style="display: flex; flex-direction: column; align-items: center;">
-        <div>
+        <div class="inputcontainer">
             <label for="cad">🍁 CAD</label>
             <input type="text" name="cad" id="cad" value="" inputmode="decimal">
         </div>
-        <div>
+        <div class="inputcontainer">
             <label for="usd">🦅 USD</label>
             <input type="text" name="usd" id="usd" value="" inputmode="decimal">
         </div>
-        <div>
+        <div class="inputcontainer">
             <label for="dop">🏝️ DOP</label>
             <input type="text" name="dop" id="dop" value="" inputmode="decimal">
         </div>
@@ -86,8 +89,8 @@
 
         const currencies = {
             "cad": 1.0,
-            "usd": 0.72,
-            "dop": 43.46,
+            "usd": 0.7188,
+            "dop": 43.4613,
         };
 
         const cad = document.getElementById("cad");
