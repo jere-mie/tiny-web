@@ -39,6 +39,22 @@
         input[type="text"]:focus {
             background-color: #d0d0d0;
         }
+
+        button.clear-btn {
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: none;
+            border-radius: 0.25rem;
+            background-color: #082098;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        button.clear-btn:hover {
+            background-color: #112dbb;
+        }
     </style>
 </head>
 <body>
@@ -46,16 +62,17 @@
     <div style="display: flex; flex-direction: column; align-items: center;">
         <div>
             <label for="cad">🍁 CAD</label>
-            <input type="text" name="cad" id="cad" value="0.0">
+            <input type="text" name="cad" id="cad" value="" inputmode="decimal">
         </div>
         <div>
-            <label for="usd">⭐ USD</label>
-            <input type="text" name="usd" id="usd" value="0.0">
+            <label for="usd">🦅 USD</label>
+            <input type="text" name="usd" id="usd" value="" inputmode="decimal">
         </div>
         <div>
             <label for="dop">🏝️ DOP</label>
-            <input type="text" name="dop" id="dop" value="0.0">
+            <input type="text" name="dop" id="dop" value="" inputmode="decimal">
         </div>
+        <button class="clear-btn" onclick="clearInputs()">Clear</button>
     </div>
 
     <script>
@@ -91,6 +108,12 @@
                     otherCurrency.value = otherValue.toFixed(2);
                 }
             }
+        }
+
+        function clearInputs() {
+            cad.value = "";
+            usd.value = "";
+            dop.value = "";
         }
     </script>
 </body>
