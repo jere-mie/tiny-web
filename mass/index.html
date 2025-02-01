@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WE Catholic Mass List</title>
+
+    <meta property="og:site_name" content="WE Catholic Mass List" />
+    <meta property="og:title" content="Windsor-Essex County Catholic Mass List" />
+    <meta property="og:description" content="A list of Catholic Masses held in the WE area" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="leaflet.1.9.4.css">
+    <script src="leaflet.1.9.4.js"></script>
+    <style>
+        h1 {
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+        #map { height: 80vh; }
+    </style>
+</head>
+
+<body>
+    <h1>Windsor-Essex County Catholic Mass List</h1>
+    <div id="map"></div>
+    <script type="module">
+        /**
+         * @typedef {Object} Mass
+         * @property {string} day - The day of the mass.
+         * @property {string} time - The time of the mass.
+         * @property {string | undefined} [note] - An optional note about the mass.
+         */
+
+        /**
+         * @typedef {Object} Church
+         * @property {string} name - The name of the church.
+         * @property {string} address - The address of the church.
+         * @property {Array<number>} coordinates - An array representing the coordinates [latitude, longitude].
+         * @property {string} website - The website of the church.
+         * @property {string} phone - The phone number of the church.
+         * @property {Array<Mass>} masses - An array of mass objects.
+         */
+
+        import { churches } from './churches.js'; 
+        var map = L.map('map').setView([42.16132298808876, -82.92932437200604], 11);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        for (var i = 0; i < churches.length; i++) {
+            /** @type {Church} */
+            const church = churches[i];
+            L.marker(church.coordinates).addTo(map).bindPopup(`
+            <h1>${church.name}</h1>
+            <p>${church.address}</p>
+            <p>${church.phone}</p>
+            <p><a href="${church.website}">${church.website}</a></p>
+            <h2>Masses</h2>
+            <ul>
+                ${church.masses.map(mass => `<li>${mass.day} - ${mass.time} ${mass.note ? ` (${mass.note})` : ''}</li>`).join('')}
+            </ul>
+            `);
+        }
+
+    </script>
+</body>
+
+</html>
