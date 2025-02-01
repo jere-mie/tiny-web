@@ -8,20 +8,44 @@
 
     <meta property="og:site_name" content="WE Catholic Mass List" />
     <meta property="og:title" content="Windsor-Essex County Catholic Mass List" />
-    <meta property="og:description" content="A list of Catholic Masses held in the WE area" />
+    <meta property="og:description" content="A list of Catholic Masses held in the Windsor-Essex area" />
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="leaflet.1.9.4.css">
     <script src="leaflet.1.9.4.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         h1 {
             font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
         }
+        a {
+            text-decoration: none;
+            color: black;
+        }
         #map { height: 80vh; }
+
+        .churchPopup {
+            p {
+                margin: 0;
+                padding: 0;
+            }
+            h2 {
+             margin-bottom: 0;   
+            }
+            ul {
+                margin-top: 8px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <h1>Windsor-Essex County Catholic Mass List</h1>
+    <h1>
+        <i class="fas fa-bible"></i>
+        Windsor-Essex County Catholic Mass List
+        <a href="https://github.com/jere-mie/tiny-web/tree/master/mass" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </h1>
     <div id="map"></div>
     <script type="module">
         /**
@@ -48,18 +72,26 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        function formatPhoneNumber(phoneNumber) {
+            return phoneNumber.replace(/\D/g, '').replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '($2) $3-$4');
+        }
+        function formatUrl(url) {
+            return url.replace(/^(https?:\/\/)?/i, '').replace(/\/$/, '');
+        }
         for (var i = 0; i < churches.length; i++) {
             /** @type {Church} */
             const church = churches[i];
             L.marker(church.coordinates).addTo(map).bindPopup(`
-            <h1>${church.name}</h1>
-            <p>${church.address}</p>
-            <p>${church.phone}</p>
-            <p><a href="${church.website}">${church.website}</a></p>
-            <h2>Masses</h2>
-            <ul>
-                ${church.masses.map(mass => `<li>${mass.day} - ${mass.time} ${mass.note ? ` (${mass.note})` : ''}</li>`).join('')}
-            </ul>
+            <div class="churchPopup">            
+                <h1>${church.name}</h1>
+                <p><i class="fas fa-map-marker-alt"></i> ${church.address}</p>
+                <p><i class="fas fa-phone"></i> ${formatPhoneNumber(church.phone)}</p>
+                <p><i class="fas fa-globe"></i> <a href="${church.website}" target="_blank">${formatUrl(church.website)}</a></p>
+                <h2>Masses</h2>
+                <ul>
+                    ${church.masses.map(mass => `<li>${mass.day} - ${mass.time} ${mass.note ? ` (${mass.note})` : ''}</li>`).join('')}
+                </ul>
+            </div>
             `);
         }
 

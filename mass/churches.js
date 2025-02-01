@@ -428,7 +428,7 @@ export const churches = [
         ]
     },
     {
-        name: "St.John Vianney",
+        name: "St. John Vianney",
         address: "385 Dieppe St, Windsor, ON N8S 3V3",
         coordinates: [42.339106220959664, -82.93324151261794],
         website: "http://eastwindsorcatholic.dol.ca/",
