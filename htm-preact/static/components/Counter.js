@@ -16,7 +16,7 @@ export function Counter() {
 
     return html`
         <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-12 col-lg-8 col-xl-6">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
                         <h5 class="card-title mb-0">
@@ -25,14 +25,14 @@ export function Counter() {
                     </div>
                     <div class="card-body text-center">
                         <div class="mb-4">
-                            <h1 class="display-1 ${getCountColor()}" style="font-weight: bold;">
+                            <h1 class="display-4 display-md-1 ${getCountColor()}" style="font-weight: bold;">
                                 ${count}
                             </h1>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Step Size:</label>
-                            <div class="input-group justify-content-center" style="max-width: 200px; margin: 0 auto;">
+                            <div class="input-group justify-content-center mx-auto" style="max-width: 200px;">
                                 <input 
                                     type="number" 
                                     class="form-control text-center" 
@@ -43,16 +43,16 @@ export function Counter() {
                             </div>
                         </div>
 
-                        <div class="d-grid gap-2 d-md-block">
+                        <div class="d-grid gap-2 d-sm-block">
                             <button 
-                                class="btn btn-outline-danger btn-lg me-md-2"
+                                class="btn btn-outline-danger btn-lg"
                                 onClick=${decrement}
                             >
                                 <span class="fw-bold">- ${step}</span>
                             </button>
                             
                             <button 
-                                class="btn btn-outline-secondary btn-lg me-md-2"
+                                class="btn btn-outline-secondary btn-lg mx-sm-2"
                                 onClick=${reset}
                             >
                                 Reset
@@ -67,26 +67,26 @@ export function Counter() {
                         </div>
 
                         <div class="mt-4">
-                            <div class="row text-center">
+                            <div class="row text-center g-2">
                                 <div class="col-4">
-                                    <div class="border rounded p-2">
-                                        <small class="text-muted">Positive</small>
+                                    <div class="border rounded p-2 p-md-3">
+                                        <small class="text-muted d-block">Positive</small>
                                         <div class="fw-bold text-success">
                                             ${Math.max(0, count)}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="border rounded p-2">
-                                        <small class="text-muted">Absolute</small>
+                                    <div class="border rounded p-2 p-md-3">
+                                        <small class="text-muted d-block">Absolute</small>
                                         <div class="fw-bold">
                                             ${Math.abs(count)}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="border rounded p-2">
-                                        <small class="text-muted">Squared</small>
+                                    <div class="border rounded p-2 p-md-3">
+                                        <small class="text-muted d-block">Squared</small>
                                         <div class="fw-bold text-info">
                                             ${count * count}
                                         </div>

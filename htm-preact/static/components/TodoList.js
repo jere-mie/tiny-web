@@ -65,8 +65,8 @@ export function TodoList() {
     };
 
     return html`
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
                 <div class="card shadow">
                     <div class="card-header bg-success text-white">
                         <h5 class="card-title mb-0">
@@ -75,8 +75,8 @@ export function TodoList() {
                     </div>
                     <div class="card-body">
                         <!-- Add Todo Form -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
+                        <div class="row g-2 mb-4">
+                            <div class="col-12 col-md-6">
                                 <input
                                     type="text"
                                     class="form-control"
@@ -86,7 +86,7 @@ export function TodoList() {
                                     onKeyPress=${handleKeyPress}
                                 />
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-sm-6 col-md-3">
                                 <select 
                                     class="form-select"
                                     value=${newPriority}
@@ -97,7 +97,7 @@ export function TodoList() {
                                     <option value="high">High Priority</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-12 col-sm-6 col-md-3">
                                 <button 
                                     class="btn btn-primary w-100"
                                     onClick=${addTodo}
@@ -109,24 +109,24 @@ export function TodoList() {
                         </div>
 
                         <!-- Stats -->
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="badge bg-primary me-2">Total: ${stats.total}</span>
-                                        <span class="badge bg-warning me-2">Active: ${stats.active}</span>
-                                        <span class="badge bg-success">Completed: ${stats.completed}</span>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <input type="radio" class="btn-check" name="filter" id="all" checked=${filter === 'all'} />
-                                        <label class="btn btn-outline-secondary" for="all" onClick=${() => setFilter('all')}>All</label>
-                                        
-                                        <input type="radio" class="btn-check" name="filter" id="active" checked=${filter === 'active'} />
-                                        <label class="btn btn-outline-secondary" for="active" onClick=${() => setFilter('active')}>Active</label>
-                                        
-                                        <input type="radio" class="btn-check" name="filter" id="completed" checked=${filter === 'completed'} />
-                                        <label class="btn btn-outline-secondary" for="completed" onClick=${() => setFilter('completed')}>Completed</label>
-                                    </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">Total: ${stats.total}</span>
+                                    <span class="badge bg-warning text-dark">Active: ${stats.active}</span>
+                                    <span class="badge bg-success">Completed: ${stats.completed}</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="filter" id="all" checked=${filter === 'all'} />
+                                    <label class="btn btn-outline-secondary btn-sm" for="all" onClick=${() => setFilter('all')}>All</label>
+                                    
+                                    <input type="radio" class="btn-check" name="filter" id="active" checked=${filter === 'active'} />
+                                    <label class="btn btn-outline-secondary btn-sm" for="active" onClick=${() => setFilter('active')}>Active</label>
+                                    
+                                    <input type="radio" class="btn-check" name="filter" id="completed" checked=${filter === 'completed'} />
+                                    <label class="btn btn-outline-secondary btn-sm" for="completed" onClick=${() => setFilter('completed')}>Completed</label>
                                 </div>
                             </div>
                         </div>
@@ -139,23 +139,23 @@ export function TodoList() {
                                     <p class="mt-2">No todos to show</p>
                                 </div>
                             ` : getFilteredTodos().map(todo => html`
-                                <div key=${todo.id} class="list-group-item d-flex justify-content-between align-items-center ${todo.completed ? 'bg-light' : ''}">
-                                    <div class="d-flex align-items-center">
+                                <div key=${todo.id} class="list-group-item d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center ${todo.completed ? 'bg-light' : ''}">
+                                    <div class="d-flex align-items-center mb-2 mb-sm-0 flex-grow-1">
                                         <input 
                                             type="checkbox" 
                                             class="form-check-input me-3"
                                             checked=${todo.completed}
                                             onChange=${() => toggleTodo(todo.id)}
                                         />
-                                        <span class="${todo.completed ? 'text-decoration-line-through text-muted' : ''}">
+                                        <span class="${todo.completed ? 'text-decoration-line-through text-muted' : ''} me-2">
                                             ${todo.text}
                                         </span>
-                                        <span class="badge ${getPriorityBadge(todo.priority)} ms-2 small">
+                                        <span class="badge ${getPriorityBadge(todo.priority)} small">
                                             ${todo.priority}
                                         </span>
                                     </div>
                                     <button 
-                                        class="btn btn-outline-danger btn-sm"
+                                        class="btn btn-outline-danger btn-sm align-self-end align-self-sm-center"
                                         onClick=${() => deleteTodo(todo.id)}
                                     >
                                         🗑️

@@ -1,107 +1,103 @@
 import { useState, html } from '../standalone-preact-htm.esm.js';
 import { Header } from './Header.js';
-import { Counter } from './Counter.js';
-import { TodoList } from './TodoList.js';
-import { Clock } from './Clock.js';
-import { UserCard } from './UserCard.js';
+import { router, RouterOutlet, NavLink } from './Router.js';
+import { HomePage } from './HomePage.js';
+import { CounterPage } from './CounterPage.js';
+import { TodoPage } from './TodoPage.js';
+import { ProfilePage } from './ProfilePage.js';
+import { NotFoundPage } from './NotFoundPage.js';
+
+// Set up routes
+router
+    .route('/', HomePage)
+    .route('/counter', CounterPage)
+    .route('/todos', TodoPage)
+    .route('/profile', ProfilePage)
+    .route('*', NotFoundPage); // 404 page for unmatched routes
 
 export function App() {
-    const [activeTab, setActiveTab] = useState('home');
-
-    const tabs = [
-        { id: 'home', label: 'Home', icon: '🏠' },
-        { id: 'counter', label: 'Counter', icon: '🔢' },
-        { id: 'todos', label: 'Todos', icon: '✅' },
-        { id: 'profile', label: 'Profile', icon: '👤' }
-    ];
-
-    const renderTabContent = () => {
-        switch (activeTab) {
-            case 'home':
-                return html`
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">🚀 Welcome to Preact + HTM</h5>
-                                    <p class="card-text">
-                                        This is a modern web application built with Preact and HTM, 
-                                        styled with Bootstrap, and requiring zero build tools!
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="card bg-light">
-                                                <div class="card-body text-center">
-                                                    <h6 class="card-title">⚡ Fast</h6>
-                                                    <p class="card-text small">Preact is only 3kB</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="card bg-light">
-                                                <div class="card-body text-center">
-                                                    <h6 class="card-title">🛠️ No Build</h6>
-                                                    <p class="card-text small">Just open in browser</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <${Clock} />
-                        </div>
-                    </div>
-                `;
-            case 'counter':
-                return html`<${Counter} />`;
-            case 'todos':
-                return html`<${TodoList} />`;
-            case 'profile':
-                return html`<${UserCard} />`;
-            default:
-                return html`<div class="alert alert-warning">Page not found</div>`;
-        }
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    
+    const toggleMobileMenu = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
     };
+
+    const closeMobileMenu = () => {
+        setMobileMenuOpen(false);
+    };
+
+    const navItems = [
+        { path: '/', label: 'Home', icon: '🏠' },
+        { path: '/counter', label: 'Counter', icon: '🔢' },
+        { path: '/todos', label: 'Todos', icon: '✅' },
+        { path: '/profile', label: 'Profile', icon: '👤' }
+    ];
 
     return html`
         <div class="container-fluid">
             <${Header} />
             
-            <!-- Navigation Tabs -->
-            <div class="row">
-                <div class="col-12">
-                    <ul class="nav nav-pills nav-fill mb-4">
-                        ${tabs.map(tab => html`
-                            <li class="nav-item" key=${tab.id}>
-                                <button 
-                                    class="nav-link ${activeTab === tab.id ? 'active' : ''}"
-                                    onClick=${() => setActiveTab(tab.id)}
-                                    style="border: none; background: none;"
-                                >
-                                    ${tab.icon} ${tab.label}
-                                </button>
-                            </li>
-                        `)}
-                    </ul>
+            <!-- Navigation Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-4 shadow-sm">
+                <div class="container-fluid">
+                    <span class="navbar-brand d-lg-none">
+                        <span class="badge bg-primary me-1">⚛️</span>
+                        Navigation
+                    </span>
+                    <button 
+                        class="navbar-toggler" 
+                        type="button" 
+                        onClick=${toggleMobileMenu}
+                        aria-controls="navbarNav"
+                        aria-expanded=${mobileMenuOpen}
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse ${mobileMenuOpen ? 'show' : 'collapse'}" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            ${navItems.map(item => html`
+                                <li class="nav-item" key=${item.path}>
+                                    <${NavLink} 
+                                        to=${item.path}
+                                        className="nav-link px-3 py-2"
+                                        activeClassName="nav-link active px-3 py-2"
+                                        onClick=${closeMobileMenu}
+                                    >
+                                        <span class="d-inline-block me-2">${item.icon}</span>
+                                        ${item.label}
+                                    </NavLink>
+                                </li>
+                            `)}
+                        </ul>
+                        <div class="navbar-text d-none d-lg-block">
+                            <small class="text-muted">No build tools • Client-side routing</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </nav>
 
-            <!-- Tab Content -->
-            <div class="row">
-                <div class="col-12">
-                    ${renderTabContent()}
-                </div>
-            </div>
+            <!-- Page Content -->
+            <main>
+                <${RouterOutlet} />
+            </main>
 
             <!-- Footer -->
             <footer class="mt-5 pt-4 border-top">
                 <div class="row">
-                    <div class="col-12 text-center">
-                        <p class="text-muted">
-                            Built with ❤️ using Preact + HTM + Bootstrap
+                    <div class="col-md-8">
+                        <h6>🚀 Preact + HTM + Bootstrap</h6>
+                        <p class="text-muted mb-0">
+                            A modern web application built without build tools. 
+                            Features client-side routing, component architecture, and responsive design.
                         </p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <div class="d-flex justify-content-md-end justify-content-start gap-2">
+                            <span class="badge bg-primary">Preact 10.26.9</span>
+                            <span class="badge bg-success">HTM 3.1.1</span>
+                            <span class="badge bg-info">Bootstrap 5</span>
+                        </div>
                     </div>
                 </div>
             </footer>
