@@ -74,8 +74,20 @@
             <input type="text" name="usd" id="usd" value="" inputmode="decimal">
         </div>
         <div class="inputcontainer">
-            <label for="dop">🏝️ DOP</label>
+            <label for="dop">🌴 DOP</label>
             <input type="text" name="dop" id="dop" value="" inputmode="decimal">
+        </div>
+        <div class="inputcontainer">
+            <label for="mxn">🌵 MXN</label>
+            <input type="text" name="mxn" id="mxn" value="" inputmode="decimal">
+        </div>
+        <div class="inputcontainer">
+            <label for="eur">💶 EUR</label>
+            <input type="text" name="eur" id="eur" value="" inputmode="decimal">
+        </div>
+        <div class="inputcontainer">
+            <label for="gbp">💷 GBP</label>
+            <input type="text" name="gbp" id="gbp" value="" inputmode="decimal">
         </div>
         <button class="clear-btn" onclick="clearInputs()">Clear</button>
     </div>
@@ -91,17 +103,26 @@
 
         const currencies = {
             "cad": 1.0,
-            "usd": 0.73049531,
-            "dop": 45.94523463,
+            "usd": 0.73017041,
+            "dop": 46.01264140,
+            "mxn": 13.13228533,
+            "eur": 0.62159785,
+            "gbp": 0.54216300,
         };
 
         const cad = document.getElementById("cad");
         const usd = document.getElementById("usd");
         const dop = document.getElementById("dop");
+        const mxn = document.getElementById("mxn");
+        const eur = document.getElementById("eur");
+        const gbp = document.getElementById("gbp");
 
         cad.addEventListener("input", convert);
         usd.addEventListener("input", convert);
         dop.addEventListener("input", convert);
+        mxn.addEventListener("input", convert);
+        eur.addEventListener("input", convert);
+        gbp.addEventListener("input", convert);
 
         function convert(event) {
             const value = event.target.value;
@@ -119,6 +140,9 @@
             cad.value = "";
             usd.value = "";
             dop.value = "";
+            mxn.value = "";
+            eur.value = "";
+            gbp.value = "";
         }
     </script>
 </body>
